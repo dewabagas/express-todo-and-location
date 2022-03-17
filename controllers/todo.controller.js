@@ -1,63 +1,67 @@
 const fs = require("fs");
+const db = require("../config/db");
 
 
-exports.getTodo = (req, res) => {
-    fs.readFile(path, (err, data) => {
-        res.json(JSON.parse(data))
-      })
+exports.getTodos = async (req, res) => {
+    await db.query("select * from todos").then(result => {
+        res.status(200).json({
+            "data": result.rows
+        })
+    }).catch(error => {
+        console.log("error", error)
+        res.status(500).json({
+            message: 'INTERNAL SERVER ERROR'
+        })
+    })
 }
 
-exports.postTodo = (req, res) => {
+exports.postTodo = async (req, res) => {
+    console.log("post2", req)
     const body = req.body;
-    todos = JSON.parse(todos)
-    todos.push(body)
-    fs.writeFile(path, JSON.stringify(todos), (err) => {
-        if(err) {
-            console.log(err)
-            res.status(400).json({message: 'ERROR'})
-            return
-        }
-        res.json(body)
+
+    await db.query(`insert into todos (title, checked) values ('${body.title}', ${body.checked})`).then(result => {
+        res.status(200).json({
+            "status": "Success"
+        })
+    }).catch(error => {
+        console.log("error post", error)
+        res.status(500).json({
+            message:'INTENRAL SERVER ERROR'
+        })
     })
 }
   
-exports.putTodo = (req, res) => {
-    todos = JSON.parse(todos)
-    const item = todos.find(item => item.id == req.params.id);
-    const index = todos.map(value => value.id).indexOf(item.id);
-    const isFound = todos.some(value => value.id == req.params.id)
-    todos[index] = req.body
-    
-    if(isFound) {
-        fs.writeFile(path, JSON.stringify(todos), (err) => {
-            if(err) {
-                console.log(err)
-                res.status(400).json({message: 'ERROR'})
-                return
-            }
-            res.send("data berhasil di ubah")
-        })
-    } else {
-        res.status(400).send("data tidak ditemukan")
-    }
+exports.putTodo = async (req, res) => {
+    const body = req.body;
+    const id = req.query.id;
+
+    await db.query(`update todos set title='${body.title}', checked = ${body.checked} where id=${id}`)
+        .then(result => {
+            res.status(200).json({
+                "status": "Success"
+            })
+        }).catch(error => {
+            console.log("error put", error)
+            res.status(500).json({
+                message:'INTENRAL SERVER ERROR'
+            })
+        }) 
+   
 }  
  
-exports.deleteTodo = (req, res) => {
-    todos = JSON.parse(todos)
-    const item = todos.find(item => item.id == req.params.id);
-    const index = todos.map(value => value.id).indexOf(item.id);
-    const isFound = todos.some(value => value.id == req.params.id)
-    if(isFound) {
-        todos.splice(index, 1)
-        fs.writeFile(path, JSON.stringify(todos), (err) => {
-            if(err) {
-                console.log(err)
-                res.status(400).json({message: 'ERROR'})
-                return
-            }
-            res.send("data berhasil dihapus")
+exports.deleteTodo = async  (req, res) => {
+    const id = req.query.id
+
+    await db.query(`delete from todos where id = ${id}`)
+        .then(result => {
+            res.status(200).json({
+                "status": "Success"
+            })
+        }).catch(error => {
+            console.log("error del", error)
+            res.status(500).json({
+                message: 'INTERNAL SERVER ERROR'
+            })
         })
-    } else {
-        res.status(400).send("data tidak ditemukan")
-    }
+    
 }
