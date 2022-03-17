@@ -1,7 +1,7 @@
 const fs = require("fs");
 const db = require("../config/db");
 
-
+// get todo
 exports.getTodos = async (req, res) => {
     await db.query("select * from todos").then(result => {
         res.status(200).json({
