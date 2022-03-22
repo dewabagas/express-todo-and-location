@@ -1,7 +1,19 @@
 {
+  "name": "myapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "hahahaaa",
+    "start": "nodemon app.js",
+    "db:create:migration": "sequelize migration:generate --name",
+    "db:migrate": "sequelize migration:migrate",
+    "db:rollback": "sequelize migration:undo"
+  },
   "dependencies": {
     "express": "^4.17.3",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "sequelize": "^6.17.0",
+    "sequelize-cli": "^6.4.1"
   }
 }
