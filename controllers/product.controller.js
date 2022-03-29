@@ -17,7 +17,7 @@ exports.getProducts = async (req, res) => {
 }
 
 exports.getProductsByCreator = async (req, res) => {
-    User.findOne({where: {id: parseInt(req.params.id)}, 
+    User.findOne({where: {id: req.id}, 
         include: {
             model: Product,
             as: 'products'
@@ -36,8 +36,9 @@ exports.getProductsByCreator = async (req, res) => {
 }
 
 exports.postProduct = async (req, res) => {
+   console.log("reqe", req.id)
    const body = req.body;
-   const user_id = parseInt(req.params.id);
+//    const user_id = parseInt(req.params.id);
    const name = body.name;
    const price = body.price;
    const quantity = body.quantity;
@@ -46,7 +47,7 @@ exports.postProduct = async (req, res) => {
        name: name,
        price: price,
        quantity: quantity,
-       user_id: user_id
+       user_id: req.id
    }).then(result => {
        res.status(200).send({
            status: "SUCCESS",
