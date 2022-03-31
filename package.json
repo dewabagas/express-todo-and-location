@@ -6,11 +6,13 @@
     "test": "hahahaaa",
     "start": "nodemon app.js",
     "db:create:migration": "sequelize migration:generate --name",
-    "db:migrate": "sequelize migration:migrate",
+    "db:migrate": "sequelize db:migrate",
     "db:rollback": "sequelize migration:undo"
   },
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.3",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.15",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0",

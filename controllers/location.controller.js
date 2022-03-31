@@ -1,7 +1,6 @@
 const { provinces, regencies } = require('../data/location')
 
 exports.getCities = (req, res) => {
-    console.log("query", req.query)
     let provinceId = ''
     for(const data of provinces) {
         const provinceName = data.name.toLowerCase();
@@ -15,7 +14,6 @@ exports.getCities = (req, res) => {
 }
 
 exports.getCitiesNameByWordCount = (req, res) => {
-    console.log("req n-word", req.query)
     const result = []
     for (const data of regencies) {
         const wordCountRegency = data.name.split(" ").length
@@ -29,7 +27,6 @@ exports.getCitiesNameByWordCount = (req, res) => {
 }
 
 exports.getProvinceByCityName = (req, res) => {
-    console.log("n-word 100%", req.query)
     let provinceId = ''
     for (const data of regencies) {
         const cityName = data.name.toLowerCase();
