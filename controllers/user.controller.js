@@ -94,7 +94,6 @@ exports.signUp = async (req, res) => {
     })
 }
 
-// get users
 exports.getUsers = async (req, res) => {
     User.findAll().then(result => {
         res.status(200).send({

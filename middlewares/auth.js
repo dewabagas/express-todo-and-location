@@ -10,7 +10,6 @@ const verify = async (req, res, next) => {
             })
         }
         req.id = decoded.id;
-        console.log("token id", decoded.id)
 
         next();
     });

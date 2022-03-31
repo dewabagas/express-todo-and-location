@@ -1,7 +1,6 @@
 const fs = require("fs");
 const db = require("../config/db");
 
-// get todo
 exports.getTodos = async (req, res) => {
     await db.query("select * from todos").then(result => {
         res.status(200).json({
@@ -16,7 +15,6 @@ exports.getTodos = async (req, res) => {
 }
 
 exports.postTodo = async (req, res) => {
-    console.log("post2", req)
     const body = req.body;
 
     await db.query(`insert into todos (title, checked) values ('${body.title}', ${body.checked})`).then(result => {

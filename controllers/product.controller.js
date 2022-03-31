@@ -1,7 +1,7 @@
 const db = require("../config/db");
 const Product = require("../models/index").Product;
 const User = require("../models/index").User;
-// get users
+
 exports.getProducts = async (req, res) => {
     Product.findAll().then(result => {
         res.status(200).send({
@@ -36,9 +36,7 @@ exports.getProductsByCreator = async (req, res) => {
 }
 
 exports.postProduct = async (req, res) => {
-   console.log("reqe", req.id)
    const body = req.body;
-//    const user_id = parseInt(req.params.id);
    const name = body.name;
    const price = body.price;
    const quantity = body.quantity;
