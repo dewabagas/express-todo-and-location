@@ -1,10 +1,16 @@
 {
   "development": {
-    "username": "",
-    "password": "",
-    "database": "my_todos_db",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "spblszxraedhwe",
+    "password": "be7f94d6b619d3a3ce69c3b00ad2e9835a7b0c32ca844050935d30beffc33852",
+    "database": "d690iaoet1v0og",
+    "host": "ec2-34-192-210-139.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true, 
+        "rejectUnauthorized": false
+      }
+    }
   },
   "test": {
     "username": "",
@@ -14,10 +20,16 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "",
-    "password": "",
-    "database": "my_todos_db",
-    "host": "127.0.0.1",
-    "dialect": "postgres"
+    "username": "spblszxraedhwe",
+    "password": "be7f94d6b619d3a3ce69c3b00ad2e9835a7b0c32ca844050935d30beffc33852",
+    "database": "d690iaoet1v0og",
+    "host": "ec2-34-192-210-139.compute-1.amazonaws.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+       "ssl": {
+         "require": true, 
+         "rejectUnauthorized": false
+       }
+     }
   }
 }
