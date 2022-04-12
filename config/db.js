@@ -7,5 +7,4 @@ const pool = new Pool ({
     password: ''
 })
 
-
 module.exports = pool
