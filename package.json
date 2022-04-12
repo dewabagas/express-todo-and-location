@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "db:create:migration": "sequelize migration:generate --name",
     "db:migrate": "sequelize db:migrate",
     "db:rollback": "sequelize migration:undo"
